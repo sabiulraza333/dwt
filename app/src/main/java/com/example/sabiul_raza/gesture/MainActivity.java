@@ -31,7 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private static final String TAG = "MainActivity";
-    
+
     private SensorManager sensorManager;
     Sensor accelerometer;
 
@@ -221,18 +221,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     public void createCSVFile(List <List <Float>> merge1) {
         CSVWriter writer = null;
-        File file = new File("data/data/test.csv");
+        File file = new File(this.getFilesDir(),"test1.csv");
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                writer = new CSVWriter(new FileWriter("data/data/test.csv"), ',');
-                String entries = merge1.get(0).toString(); // array of your values
-                writer.writeNext(new String[]{entries});
-                writer.close();
+//                writer = new CSVWriter(new FileWriter("data/data/test.csv"), ',');
+//                String entries = merge1.get(0).toString(); // array of your values
+//                writer.writeNext(new String[]{entries});
+//                writer.close();
             } catch (IOException e) {
 //                e.printStackTrace();
                 Log.d(TAG, "createCSVFile: " + e);
             }
+        } else {
+            Log.d(TAG, "createCSVFile: file present");
+
         }
 
     }
